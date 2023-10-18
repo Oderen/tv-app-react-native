@@ -14,6 +14,7 @@ const ShowList = ({ navigation }) => {
       style={{
         width: "90%",
         marginBottom: 15,
+        marginBottom: 80,
       }}
       data={shows}
       renderItem={({

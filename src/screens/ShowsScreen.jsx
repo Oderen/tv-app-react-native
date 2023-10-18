@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  TextInput,
   View,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -12,6 +11,7 @@ import { fetchShows } from "../redux/api-operation";
 import ShowList from "../components/ShowList";
 import Loader from "../components/Loader";
 import HelperText from "../components/HelperText";
+import Searchbar from "../components/Searchbar";
 
 import _ from "lodash";
 
@@ -25,11 +25,6 @@ const ShowsScreen = ({ navigation }) => {
     dispatch(fetchShows(query));
   }, [dispatch, query]);
 
-  const handleTextChange = _.throttle((text) => {
-    setQuery(text);
-  }, 2000);
-
-  const [inputFocused, setInputFocused] = useState(false);
   const shouldRenderHelperText = query.trim().length < 2;
 
   return (
@@ -39,22 +34,7 @@ const ShowsScreen = ({ navigation }) => {
       keyboardShouldPersistTaps={"always"}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <TextInput
-            placeholder="Breaking Bed"
-            placeholderTextColor="#BDBDBD"
-            value={query}
-            onChangeText={handleTextChange}
-            onFocus={() => {
-              setInputFocused(true);
-            }}
-            onBlur={() => {
-              setInputFocused(false);
-            }}
-            style={[styles.input, inputFocused && styles.inputFocused]}
-          />
-        </View>
-
+        <Searchbar query={query} setQuery={setQuery} />
         <View style={styles.main}>
           {isLoading ? (
             <Loader />

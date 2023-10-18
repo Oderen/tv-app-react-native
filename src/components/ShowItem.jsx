@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 10,
     width: "100%",
+    height: 100,
+    justifyContent: "space-between",
   },
   ratingContainer: {
     justifyContent: "center",
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "90%",
-    height: 530,
+    height: 560,
     padding: 5,
     marginTop: 20,
     borderRadius: 10,
